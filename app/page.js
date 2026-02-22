@@ -7,6 +7,8 @@ export default function HomePage() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [steps, setSteps] = useState({ extract: 'idle', match: 'idle', recommend: 'idle' });
+
 
   async function onAnalyze() {
     if (!file) {
@@ -16,6 +18,7 @@ export default function HomePage() {
 
     setError('');
     setLoading(true);
+    setSteps({ extract: 'running', match: 'idle', recommend: 'idle' });
     setResult(null);
 
     try {
@@ -31,7 +34,7 @@ export default function HomePage() {
       if (!res.ok) {
         throw new Error(data.error || 'Analysis failed.');
       }
-
+      setSteps({ extract: 'done', match: 'done', recommend: 'done' });
       setResult(data);
     } catch (err) {
       setError(err.message);
@@ -64,6 +67,14 @@ export default function HomePage() {
 
       {result ? (
         <>
+        <section className="card">
+  <h2>Agent Steps</h2>
+  <ul>
+    <li>Extract bill fields {steps.extract === 'done' ? '✅' : steps.extract === 'running' ? '⏳' : ''}</li>
+    <li>Match tariff {steps.match === 'done' ? '✅' : steps.match === 'running' ? '⏳' : ''}</li>
+    <li>Generate recommendations {steps.recommend === 'done' ? '✅' : steps.recommend === 'running' ? '⏳' : ''}</li>
+  </ul>
+</section>
           <section className="card">
             <h2>1) Extracted Bill Data</h2>
             <pre>{JSON.stringify(result.extractedBillData, null, 2)}</pre>
