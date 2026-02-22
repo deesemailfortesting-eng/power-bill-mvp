@@ -1,0 +1,34 @@
+[
+  {
+    "id": "residential-tof-basic",
+    "name": "Residential Time-of-Use Basic",
+    "category": "residential",
+    "maxMonthlyKwh": 600,
+    "currency": "USD",
+    "fixedMonthlyCharge": 9.5,
+    "energyRateOffPeak": 0.11,
+    "energyRatePeak": 0.22,
+    "notes": "Good for homes with moderate evening usage."
+  },
+  {
+    "id": "residential-flat-saver",
+    "name": "Residential Flat Saver",
+    "category": "residential",
+    "maxMonthlyKwh": 1000,
+    "currency": "USD",
+    "fixedMonthlyCharge": 12,
+    "energyRateFlat": 0.16,
+    "notes": "Simple single-rate plan for steady daily consumption."
+  },
+  {
+    "id": "small-business-demand-lite",
+    "name": "Small Business Demand Lite",
+    "category": "commercial",
+    "maxMonthlyKwh": 5000,
+    "currency": "USD",
+    "fixedMonthlyCharge": 28,
+    "energyRateFlat": 0.14,
+    "demandChargePerKw": 6.5,
+    "notes": "Designed for small offices and shops with low demand peaks."
+  }
+]
